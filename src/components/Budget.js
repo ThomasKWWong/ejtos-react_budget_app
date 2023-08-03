@@ -4,28 +4,44 @@ import { AppContext } from '../context/AppContext';
 
 
 
-
 const Budget = () => {
-    const { dispatch } = useContext(AppContext);
+    const { dispatch, expenses } = useContext(AppContext);
     const { budget } = useContext(AppContext);
 
-    //function to increase budget by 10
-    const increaseBudget = (name) => {
-        const increase = budget + 10;
+    const totalExpenses = expenses.reduce((total, item) => {
+        return (total += item.cost);
+    }, 0);
 
-    dispatch({
-        type: 'SET_BUDGET',
-        payload: increase
-    });
+    const setBudget = (amount) => {
+        const newBudget = amount;
 
+        if (newBudget >= 20000) {
+            alert("The budget cannot exceed 20000");
+            return;
+        }
+        if (newBudget < totalExpenses) {
+            alert("You cannot reduce the budget value lower than the spending");
+            return;
+        }
+
+        dispatch({
+            type: 'SET_BUDGET',
+            payload: newBudget
+        });
     }
 
     
     return (
         <div className='alert alert-secondary'>
             <span>
-                Budget: £{budget}
-                {/* <button onClick={increaseBudget}>+</button> */}
+                Budget: 
+                <input placeholder = {budget}
+                required='required'
+                type='number'
+                onChange={(event) => setBudget(event.target.value)}
+                step = "10"
+                >
+                </input>
             </span>
         </div>
     );
