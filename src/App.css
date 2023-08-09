@@ -37,6 +37,19 @@
   }
 }
 
-.test {
-    margin-left: 10px;
+.alloButton {
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+.increase{
+    background-color: green;
+}
+
+.decrease {
+    background-color: red;
 }

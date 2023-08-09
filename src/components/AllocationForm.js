@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
-import '../App.css'
+
 
 const AllocationForm = (props) => {
     const { dispatch,remaining,currency  } = useContext(AppContext);
@@ -60,9 +60,9 @@ const AllocationForm = (props) => {
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
 
-                    <div className='test'>
-                        {currency}
-                    </div>
+                  <div className="input-group-prepend" style={{ marginLeft: '2rem' }}>
+                    <span>{currency}</span>
+                  </div>
                     <input
                         required='required'
                         type='number'
